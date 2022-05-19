@@ -1,0 +1,20 @@
+HealthCheckEndpoint:
+  get:
+    tags:
+      - HealthCheck
+    summary: Ensures the api is up and running.
+    description: Swap a code for an access_token and refresh_token, or
+      swap an old refresh_token for a new access_token.
+    responses:
+      "200": # status code
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - schema:
+                  description: (If refresh_token was provided)
+                  type: object
+                  properties:
+                    healthy:
+                      type: boolean
+                      example: true

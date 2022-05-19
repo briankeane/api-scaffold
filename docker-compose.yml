@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  redis:
+    container_name: "redis"
+    image: "redis:alpine"
+
+  postgres:
+    container_name: "postgres"
+    build: ./docker/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: serverdev,servertest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+
+  migrate:
+    container_name: "migrate"
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - .env
+    command: ["npm", "migrate:all"]
+
+  server:
+    container_name: "server"
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "127.0.0.1:10020:10020"
+      - "9229:9229"
+    expose:
+      - 9229
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - redis
+      - postgres
+      - migrate
+    env_file:
+      - .env
+    command:
+      ["npm", "start"]

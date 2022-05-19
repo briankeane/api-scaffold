@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: Gibson API Microservice Template
+  description: |
+    ## Instructions
+
+    The instructions for using your microservice can go here.  They are located in `/swagger/swagger.yaml` and can be written in Markdown language.
+
+servers:
+  - url: https://localhost:10020/v1
+    description: Local (Docker) server
+  - url: https://staging.gibson-microservice-template.com/v1
+    description: Staging server
+  - url: https://microservice-template.gibson.com/v1
+    description: Production server
+
+tags:
+  - name: Widget
+    description: |
+      # Overview
+      This is the widget description -- it can also be written in markdown.
+  - name: HealthCheck
+    description: |
+      # Overview
+      This is the HealthCheck description -- it can also be written in markdown.
+
+paths:
+  # For now, OpenAPI does not support importing an entire file of path
+  # definitions.  So, each path must be defined and referenced.
+
+  # --- Healthcheck ---
+  /healthCheck:
+    $ref: "./healthCheck.swagger.yaml/#/HealthCheckEndpoint"

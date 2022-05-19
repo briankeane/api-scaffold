@@ -1,0 +1,39 @@
+{
+  "name": "gibson-api-template",
+  "version": "1.0.0",
+  "description": "A template for building a Gibson API microservice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briankeane/api-scaffold.git"
+  },
+  "author": "Brian Keane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briankeane/api-scaffold/issues"
+  },
+  "homepage": "https://github.com/briankeane/api-scaffold#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "body-parser": "^1.19.2",
+    "compression": "^1.7.4",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.3",
+    "express-bearer-token": "^2.4.0",
+    "express-jwt": "^6.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "redis": "^4.0.4",
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=16.14.2"
+  }
+}
